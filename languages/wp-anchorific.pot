@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the WP Anchorific package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Anchorific 0.2.8\n"
+"Project-Id-Version: WP Anchorific 0.1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/soderlind/wp-anchorific/issues/new\n"
-"POT-Creation-Date: 2015-02-21 16:18:39+00:00\n"
+"POT-Creation-Date: 2015-02-21 16:33:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"

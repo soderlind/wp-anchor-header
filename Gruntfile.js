@@ -223,13 +223,15 @@ module.exports = function (grunt) {
 // makepot
 	grunt.registerTask('l10n', ['makepot']);
 //release tasks
-	grunt.registerTask( 'version_number', [ 'replace:reamde_md', 'replace:reamde_txt', 'replace:plugin_php' ] );
+//	grunt.registerTask( 'version_number', [ 'replace:reamde_md', 'replace:reamde_txt', 'replace:plugin_php' ] );
+	grunt.registerTask( 'version_number', [ 'replace:reamde_md', 'replace:plugin_php' ] );
 //	grunt.registerTask( 'pre_vcs', [ 'version_number', 'glotpress_download' ] );
-	grunt.registerTask( 'pre_vcs', [ 'version_number'] );
+	grunt.registerTask( 'pre_vcs', [ 'version_number', 'l10n'] );
 //	grunt.registerTask( 'do_svn', [ 'svn_checkout', 'copy:svn_assets', 'copy:svn_trunk', 'copy:svn_tag', 'push_svn' ] );
 	grunt.registerTask( 'do_git', [ 'gitcommit', 'gittag', 'gitpush' ] );
 
-	grunt.registerTask( 'release', [ 'pre_vcs', 'do_svn', 'do_git', 'clean:post_build' ] );
+//	grunt.registerTask( 'release', [ 'pre_vcs', 'do_svn', 'do_git', 'clean:post_build' ] );
+	grunt.registerTask( 'release', [ 'pre_vcs', 'do_git', 'clean:post_build' ] );
 
 
 };
