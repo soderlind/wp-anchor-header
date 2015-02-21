@@ -1,8 +1,8 @@
 {
   "name": "wp-anchorific",
   "title": "WP Anchorific",
-  "version": "0.1.1",
-  "git_tag": "0.1.1",
+  "version": "0.1.2",
+  "git_tag": "0.1.2",
   "description": "Generates anchored headings and nested anchored-based navigations based on header tags",
   "main": "index.js",
   "scripts": {

@@ -4,7 +4,7 @@ Plugin Name: WP Anchorific
 Plugin URI: http://soderlind.no/
 Description: Generates anchored headings and nested anchored-based navigations based on header tags
 Author: Per Soderlind
-Version: 0.1.1
+Version: 0.1.2
 Author URI: http://soderlind.no
 Text Domain: wp-anchorific
 Domain Path: /languages
