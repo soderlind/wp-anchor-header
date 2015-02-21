@@ -96,7 +96,7 @@ module.exports = function (grunt) {
 				},
 				files: {
 //					src: [ 'README.md', 'readme.txt', 'wp-anchorific.php', 'package.json', 'Gruntfile.js','assets/**', 'inc/**', 'languages/**', 'lib/**', 'templates/**' ]
-					src: [ 'wp-anchorific.php', 'package.json', 'Gruntfile.js', 'css/**', 'languages/**', 'js/**' ]
+					src: [ 'README.md', 'wp-anchorific.php', 'package.json', 'Gruntfile.js', 'css/**', 'languages/**', 'js/**' ]
 				}
 			}
 		},
