@@ -1,6 +1,6 @@
 # WP Anchor Header
 
-Generates anchored headings (H1-H6), creating a heading like this:
+Generates anchored headings (H1-H6), creating headings like:
 
 ```html
 <h2 id="the-heading">
