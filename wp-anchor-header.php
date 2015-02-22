@@ -6,13 +6,9 @@ Description: Generates anchored headings.
 Author: Per Soderlind
 Version: 0.1.3
 Author URI: http://soderlind.no
-Text Domain: wp-anchor-header
-Domain Path: /languages
 */
 
 defined( 'ABSPATH' ) or die();
-
-
 define( 'ANCHORHEADER_URL',   plugin_dir_url( __FILE__ ));
 define( 'ANCHORHEADER_VERSION', '0.1.3' );
 
@@ -21,15 +17,9 @@ class Anchor_Header {
 	function __construct() {
 		add_action('wp_enqueue_scripts', array($this,'add_script_style'));
 		add_filter( 'the_content', array($this, 'the_content' ));
-
-		add_action('plugins_loaded', function(){
-			load_plugin_textdomain( 'wp-anchor-header', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-		});
-
 	}
 
 	function the_content($content) {
-
 		$anchors = array();
 		$doc = new DOMDocument();
 		@$doc->loadHTML($content);
@@ -56,7 +46,5 @@ class Anchor_Header {
 		wp_enqueue_style( 'dashicons' );
 		wp_enqueue_style( 'achored-header',  ANCHORHEADER_URL . 'css/achored-header.css', array('dashicons'), ANCHORHEADER_VERSION );
 	}
-
 } // class Anchor_Header
-
 $n = new Anchor_Header();
