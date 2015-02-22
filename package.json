@@ -1,8 +1,8 @@
 {
   "name": "wp-anchor-header",
   "title": "WP Anchor Header",
-  "version": "0.1.4",
-  "git_tag": "0.1.4",
+  "version": "0.1.5",
+  "git_tag": "0.1.5",
   "description": "Generates anchored headings.",
   "main": "index.js",
   "scripts": {

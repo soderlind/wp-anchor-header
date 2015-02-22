@@ -5,8 +5,7 @@ h3[id]:hover a.anchorlink:before,
 h4[id]:hover a.anchorlink:before,
 h5[id]:hover a.anchorlink:before,
 h6[id]:hover a.anchorlink:before {
-    /*content: "\00B6";*//* pilcrow */
-    content: "\f103";
+    content: "\f103"; /*dashicons-admin-links*/
     color: #888;
     font-size: smaller;
     text-decoration: none;

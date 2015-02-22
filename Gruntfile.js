@@ -84,7 +84,7 @@ module.exports = function (grunt) {
 				},
 				files: {
 //					src: [ 'README.md', 'readme.txt', 'wp-anchor-header.php', 'package.json', 'Gruntfile.js','assets/**', 'inc/**', 'languages/**', 'lib/**', 'templates/**' ]
-					src: [ 'README.md', 'wp-anchor-header.php', 'package.json', 'Gruntfile.js', 'css/**']
+					src: [ 'README.md', 'readme.txt', 'wp-anchor-header.php', 'package.json', 'Gruntfile.js', 'css/**']
 				}
 			}
 		},
@@ -169,17 +169,10 @@ module.exports = function (grunt) {
 	  console.log('Syntax:\n\tgrunt release');
 	});
 
-	//register default task
-//	grunt.registerTask( 'default', [ 'glotpress_download' ]);
-//	grunt.registerTask( 'default', ['syntax']);
-
-// get the latest version of Shortcake
-
-// makepot
-//release tasks
-//	grunt.registerTask( 'version_number', [ 'replace:reamde_md', 'replace:reamde_txt', 'replace:plugin_php' ] );
-	grunt.registerTask( 'version_number', [ 'replace:reamde_md', 'replace:plugin_php' ] );
-//	grunt.registerTask( 'pre_vcs', [ 'version_number', 'glotpress_download' ] );
+	//register tasks
+	//
+	//release tasks
+	grunt.registerTask( 'version_number', [ 'replace:reamde_md', 'replace:reamde_txt', 'replace:plugin_php' ] );
 	grunt.registerTask( 'pre_vcs', [ 'version_number'] );
 //	grunt.registerTask( 'do_svn', [ 'svn_checkout', 'copy:svn_assets', 'copy:svn_trunk', 'copy:svn_tag', 'push_svn' ] );
 	grunt.registerTask( 'do_git', [ 'gitcommit', 'gittag', 'gitpush' ] );
