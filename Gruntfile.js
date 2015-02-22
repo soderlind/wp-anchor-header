@@ -84,7 +84,7 @@ module.exports = function (grunt) {
 				},
 				files: {
 //					src: [ 'README.md', 'readme.txt', 'wp-anchor-header.php', 'package.json', 'Gruntfile.js','assets/**', 'inc/**', 'languages/**', 'lib/**', 'templates/**' ]
-					src: [ 'README.md', 'wp-anchor-header.php', 'package.json', 'Gruntfile.js', 'css/**', 'languages/**' ]
+					src: [ 'README.md', 'wp-anchor-header.php', 'package.json', 'Gruntfile.js', 'css/**']
 				}
 			}
 		},
@@ -150,30 +150,7 @@ module.exports = function (grunt) {
 				tmp: 'build/make_svn'
 			}
 		},
-*/		makepot: {
-		    target: {
-		        options: {
-		            domainPath: '/languages',
-		            mainFile: 'wp-anchor-header.php',
-		            potFilename: 'wp-anchor-header.pot',
-		            potHeaders: {
-		                poedit: true,
-		                'x-poedit-keywordslist': true
-		            },
-		            bugsurl: '<%= pkg.bugs.url%>',
-		            processPot: function( pot, options ) {
-	                    pot.headers['report-msgid-bugs-to'] = options.bugsurl;
-	                    /*pot.headers['language-team'] = 'Team Name <team@example.com>';*/
-	                    return pot;
-	                },
-		            type: 'wp-plugin',
-		            updateTimestamp: true,
-		            exclude: [
-		            	'node_modules/.*'
-		            ],
-		        }
-		    }
-		}, //makepot
+*/
 	});
 
 
@@ -187,7 +164,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks( 'grunt-svn-checkout' );
 	grunt.loadNpmTasks( 'grunt-push-svn' );
 	grunt.loadNpmTasks( 'grunt-remove' );
-	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 
 	grunt.registerTask('syntax', 'default task description', function(){
 	  console.log('Syntax:\n\tgrunt release');
@@ -200,12 +176,11 @@ module.exports = function (grunt) {
 // get the latest version of Shortcake
 
 // makepot
-	grunt.registerTask('l10n', ['makepot']);
 //release tasks
 //	grunt.registerTask( 'version_number', [ 'replace:reamde_md', 'replace:reamde_txt', 'replace:plugin_php' ] );
 	grunt.registerTask( 'version_number', [ 'replace:reamde_md', 'replace:plugin_php' ] );
 //	grunt.registerTask( 'pre_vcs', [ 'version_number', 'glotpress_download' ] );
-	grunt.registerTask( 'pre_vcs', [ 'version_number', 'l10n'] );
+	grunt.registerTask( 'pre_vcs', [ 'version_number'] );
 //	grunt.registerTask( 'do_svn', [ 'svn_checkout', 'copy:svn_assets', 'copy:svn_trunk', 'copy:svn_tag', 'push_svn' ] );
 	grunt.registerTask( 'do_git', [ 'gitcommit', 'gittag', 'gitpush' ] );
 
