@@ -1,7 +1,7 @@
-# wp-anchorific
+# wp-anchor-header
 
 
 
-Latest Stable Release: [0.1.2](https://github.com/soderlind/wp-anchorific/releases/tag/0.1.2)
+Latest Stable Release: [0.1.3](https://github.com/soderlind/wp-anchor-header/releases/tag/0.1.3)
 
-~Current Version: 0.1.2~
+~Current Version: 0.1.3~

@@ -3,7 +3,7 @@
  *
  * added:
  *        copy:svn_assets task
- *        makepot, creates wp-anchorific.pot
+ *        makepot, creates wp-anchor-header.pot
  */
 module.exports = function (grunt) {
 
@@ -36,9 +36,6 @@ module.exports = function (grunt) {
 		clean: {
 			post_build: [
 				'build'
-			],
-			anchorific_tmp: [
-				'tmp/anchorific'
 			]
 		},
 		copy: {
@@ -67,16 +64,7 @@ module.exports = function (grunt) {
 				src:  files_list,
 				dest: 'build/<%= pkg.name %>/tags/<%= pkg.version %>/'
 			},
-*/			anchorific: {
-				options : {
-					mode :true
-				},
-				expand: true,
-				files: [
-					{ expand: true, src: ['tmp/anchorific/css/**'], dest: 'css/', filter: 'isFile', flatten: true},
-					{ expand: true, src: ['tmp/anchorific/min/**'], dest: 'js/', filter: 'isFile', flatten: true }
-				],
-			},
+*/
 		},
 		gittag: {
 			addtag: {
@@ -95,8 +83,8 @@ module.exports = function (grunt) {
 					allowEmpty: true
 				},
 				files: {
-//					src: [ 'README.md', 'readme.txt', 'wp-anchorific.php', 'package.json', 'Gruntfile.js','assets/**', 'inc/**', 'languages/**', 'lib/**', 'templates/**' ]
-					src: [ 'README.md', 'wp-anchorific.php', 'package.json', 'Gruntfile.js', 'css/**', 'languages/**', 'js/**' ]
+//					src: [ 'README.md', 'readme.txt', 'wp-anchor-header.php', 'package.json', 'Gruntfile.js','assets/**', 'inc/**', 'languages/**', 'lib/**', 'templates/**' ]
+					src: [ 'README.md', 'wp-anchor-header.php', 'package.json', 'Gruntfile.js', 'css/**', 'languages/**' ]
 				}
 			}
 		},
@@ -109,14 +97,6 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		gitclone: {
-		    anchorific: {
-		      	options: {
-		        	repository: 'https://github.com/renettarenula/anchorific.js.git',
-		        	directory: 'tmp/anchorific'
-		      	}
-		    }
-		},
 		replace: {
 			reamde_md: {
 				src: [ 'README.md' ],
@@ -125,8 +105,8 @@ module.exports = function (grunt) {
 					from: /~Current Version:\s*(.*)~/,
 					to: "~Current Version: <%= pkg.version %>~"
 				}, {
-					from: /Latest Stable Release:\s*\[(.*)\]\s*\(https:\/\/github.com\/soderlind\/wp-anchorific\/releases\/tag\/(.*)\s*\)/,
-					to: "Latest Stable Release: [<%= pkg.git_tag %>](https://github.com/soderlind/wp-anchorific/releases/tag/<%= pkg.git_tag %>)"
+					from: /Latest Stable Release:\s*\[(.*)\]\s*\(https:\/\/github.com\/soderlind\/wp-anchor-header\/releases\/tag\/(.*)\s*\)/,
+					to: "Latest Stable Release: [<%= pkg.git_tag %>](https://github.com/soderlind/wp-anchor-header/releases/tag/<%= pkg.git_tag %>)"
 				}]
 			},
 			reamde_txt: {
@@ -139,14 +119,14 @@ module.exports = function (grunt) {
 
 			},
 			plugin_php: {
-				src: [ 'wp-anchorific.php' ],
+				src: [ 'wp-anchor-header.php' ],
 				overwrite: true,
 				replacements: [{
 					from: /Version:\s*(.*)/,
 					to: "Version: <%= pkg.version %>"
 				}, {
-					from: /define\(\s*'READOFFLINE_VERSION',\s*'(.*)'\s*\);/,
-					to: "define( 'READOFFLINE_VERSION', '<%= pkg.version %>' );"
+					from: /define\(\s*'ANCHORHEADER_VERSION',\s*'(.*)'\s*\);/,
+					to: "define( 'ANCHORHEADER_VERSION', '<%= pkg.version %>' );"
 				}]
 			}
 		},
@@ -155,7 +135,7 @@ module.exports = function (grunt) {
 				repos: [
 					{
 						path: [ 'release' ],
-						repo: 'http://plugins.svn.wordpress.org/wp-anchorific'
+						repo: 'http://plugins.svn.wordpress.org/wp-anchor-header'
 					}
 				]
 			}
@@ -166,7 +146,7 @@ module.exports = function (grunt) {
 			},
 			main: {
 				src: 'release/<%= pkg.name %>',
-				dest: 'http://plugins.svn.wordpress.org/wp-anchorific',
+				dest: 'http://plugins.svn.wordpress.org/wp-anchor-header',
 				tmp: 'build/make_svn'
 			}
 		},
@@ -174,8 +154,8 @@ module.exports = function (grunt) {
 		    target: {
 		        options: {
 		            domainPath: '/languages',
-		            mainFile: 'wp-anchorific.php',
-		            potFilename: 'wp-anchorific.pot',
+		            mainFile: 'wp-anchor-header.php',
+		            potFilename: 'wp-anchor-header.pot',
 		            potHeaders: {
 		                poedit: true,
 		                'x-poedit-keywordslist': true
@@ -219,7 +199,6 @@ module.exports = function (grunt) {
 
 // get the latest version of Shortcake
 
-	grunt.registerTask( 'anchorific', ['gitclone:anchorific', 'copy:anchorific', 'clean:anchorific_tmp']);
 // makepot
 	grunt.registerTask('l10n', ['makepot']);
 //release tasks
