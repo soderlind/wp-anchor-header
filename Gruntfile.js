@@ -19,7 +19,7 @@ module.exports = function (grunt) {
 			]
 		},
 		copy: {
-/*			svn_assets: {
+			svn_assets: {
 				options : {
 					mode :true
 				},
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 				flatten: true,
 				filter: 'isFile'
 			},
-*/			svn_trunk: {
+			svn_trunk: {
 				options : {
 					mode :true
 				},
