@@ -5,12 +5,13 @@ h3[id]:hover a.anchorlink:before,
 h4[id]:hover a.anchorlink:before,
 h5[id]:hover a.anchorlink:before,
 h6[id]:hover a.anchorlink:before {
+    text-decoration: none;
     content: "\f103"; /*dashicons-admin-links*/
     color: #888;
     font-size: smaller;
-    text-decoration: none;
-    vertical-align: baseline;
+    vertical-align: initial;
 }
+
 a.anchorlink {
     text-decoration: none;
     margin-left: 0.5em;
