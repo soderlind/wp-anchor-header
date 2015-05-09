@@ -7,8 +7,10 @@
  */
 module.exports = function (grunt) {
 
-	//setup file list for copying/ not copying for SVN
-	files_list = ['readme.txt', 'wp-anchor-header.php', 'css/**'];
+	//setup file list for copying/ not copying for SVN, doen't include assets here.
+	svn_files_list = ['readme.txt', 'wp-anchor-header.php', 'css/**'];
+	//let's add a couple more files to git
+	git_files_list = svn_files_list.concat([ 'README.md', 'package.json', 'Gruntfile.js', 'assets/**']);
 
 	// Project configuration.
 	grunt.initConfig({
@@ -35,7 +37,7 @@ module.exports = function (grunt) {
 					mode :true
 				},
 				expand: true,
-				src: files_list,
+				src: svn_files_list,
 				dest: 'build/<%= pkg.name %>/trunk/'
 			},
 			svn_tag: {
@@ -43,7 +45,7 @@ module.exports = function (grunt) {
 					mode :true
 				},
 				expand: true,
-				src:  files_list,
+				src:  svn_files_list,
 				dest: 'build/<%= pkg.name %>/tags/<%= pkg.version %>/'
 			},
 
@@ -65,8 +67,7 @@ module.exports = function (grunt) {
 					allowEmpty: true
 				},
 				files: {
-//					src: [ 'README.md', 'readme.txt', 'wp-anchor-header.php', 'package.json', 'Gruntfile.js','assets/**', 'inc/**', 'languages/**', 'lib/**', 'templates/**' ]
-					src: [ 'README.md', 'readme.txt', 'wp-anchor-header.php', 'package.json', 'Gruntfile.js', 'css/**']
+					src: git_files_list
 				}
 			}
 		},
@@ -101,7 +102,7 @@ module.exports = function (grunt) {
 
 			},
 			plugin_php: {
-				src: [ 'wp-anchor-header.php' ],
+				src: [ '<%= pkg.main %>' ],
 				overwrite: true,
 				replacements: [{
 					from: /Version:\s*(.*)/,
@@ -112,20 +113,10 @@ module.exports = function (grunt) {
 				}]
 			}
 		},
-		// svn_checkout: {
-		// 	make_local: {
-		// 		repos: [
-		// 			{
-		// 				path: [ 'build' ],
-		// 				repo: 'http://plugins.svn.wordpress.org/wp-anchor-header'
-		// 			}
-		// 		]
-		// 	}
-		// },
 		svn_export: {
 		    dev: {
 		      options: {
-		        repository: 'http://plugins.svn.wordpress.org/wp-anchor-header',
+		        repository: '<%= pkg.svn %>',
 		        output: 'build/<%= pkg.name %>'
 		    	}
 		    }
@@ -136,7 +127,7 @@ module.exports = function (grunt) {
 			},
 			main: {
 				src: 'build/<%= pkg.name %>',
-				dest: 'http://plugins.svn.wordpress.org/wp-anchor-header',
+				dest: '<%= pkg.svn %>',
 				tmp: 'build/make_svn'
 			}
 		},
@@ -150,7 +141,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-git' );
 	grunt.loadNpmTasks( 'grunt-text-replace' );
-//	grunt.loadNpmTasks( 'grunt-svn-checkout' );
 	grunt.loadNpmTasks( 'grunt-svn-export' );
 	grunt.loadNpmTasks( 'grunt-push-svn' );
 	grunt.loadNpmTasks( 'grunt-remove' );
@@ -167,9 +157,8 @@ module.exports = function (grunt) {
 	grunt.registerTask( 'default', ['syntax'] );
 	grunt.registerTask( 'version_number', [ 'replace:reamde_md', 'replace:reamde_txt', 'replace:plugin_php' ] );
 	grunt.registerTask( 'pre_vcs', [ 'version_number'] );
-	grunt.registerTask( 'do_svn', [ 'svn_export', 'copy:svn_trunk', 'copy:svn_tag', 'push_svn' ] );
+	grunt.registerTask( 'do_svn', [ 'svn_export', 'copy:svn_assets', 'copy:svn_trunk', 'copy:svn_tag', 'push_svn' ] );
 	grunt.registerTask( 'do_git', [ 'gitcommit', 'gittag', 'gitpush' ] );
-
 	grunt.registerTask( 'release', [ 'pre_vcs', 'do_svn', 'do_git', 'clean:post_build' ] );
 
 };
