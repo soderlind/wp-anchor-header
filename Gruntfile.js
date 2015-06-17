@@ -7,10 +7,26 @@
  */
 module.exports = function (grunt) {
 
-	//setup file list for copying/ not copying for SVN, doen't include assets here.
-	svn_files_list = ['readme.txt', 'wp-anchor-header.php', 'css/**'];
-	//let's add a couple more files to git
-	git_files_list = svn_files_list.concat([ 'README.md', 'package.json', 'Gruntfile.js', 'assets/**']);
+	/**
+	 * Files added to WordPress SVN, don't include 'assets/**' here.
+	 * @type {Array}
+	 */
+	svn_files_list = [
+		'readme.txt',
+		'wp-anchor-header.php',
+		'css/**'
+	];
+
+	/**
+	 * Let's add a couple of more files to GitHub
+	 * @type {Array}
+	 */
+	git_files_list = svn_files_list.concat([
+		'README.md',
+		'package.json',
+		'Gruntfile.js',
+		'assets/**'
+	]);
 
 	// Project configuration.
 	grunt.initConfig({
@@ -116,7 +132,7 @@ module.exports = function (grunt) {
 		svn_export: {
 		    dev: {
 		      options: {
-		        repository: '<%= pkg.svn %>',
+		        repository: 'http://plugins.svn.wordpress.org/<%= pkg.name %>',
 		        output: 'build/<%= pkg.name %>'
 		    	}
 		    }
@@ -127,7 +143,7 @@ module.exports = function (grunt) {
 			},
 			main: {
 				src: 'build/<%= pkg.name %>',
-				dest: '<%= pkg.svn %>',
+				dest: 'http://plugins.svn.wordpress.org/<%= pkg.name %>',
 				tmp: 'build/make_svn'
 			}
 		},

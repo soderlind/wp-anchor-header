@@ -1,8 +1,8 @@
 {
   "name": "wp-anchor-header",
   "title": "WP Anchor Header",
-  "version": "0.1.7",
-  "git_tag": "0.1.7",
+  "version": "0.1.8",
+  "git_tag": "0.1.8",
   "description": "Generates anchored headings.",
   "main": "wp-anchor-header.php",
   "scripts": {
@@ -14,8 +14,6 @@
       "type": "git",
       "url": "git://github.com/soderlind/wp-anchor-header.git"
     },
-  "svn" : "http://plugins.svn.wordpress.org/wp-anchor-header"
-  ,
   "license": "GPL",
   "bugs": {
     "url": "https://github.com/soderlind/wp-anchor-header/issues/new"
@@ -31,6 +29,6 @@
     "grunt-remove": "^0.1.0",
     "grunt-svn-export": "^0.1.7",
     "grunt-text-replace": "^0.4.0",
-    "grunt-wp-i18n": "^0.5.0"
+    "grunt-wp-i18n": "^0.5.2"
   }
 }
