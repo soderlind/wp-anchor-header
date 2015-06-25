@@ -21,12 +21,14 @@ module.exports = function (grunt) {
 	 * Let's add a couple of more files to GitHub
 	 * @type {Array}
 	 */
-	git_files_list = svn_files_list.concat([
+//	git_files_list = svn_files_list.concat([
+	git_files_list = [
 		'README.md',
 		'package.json',
 		'Gruntfile.js',
 		'assets/**'
-	]);
+	];
+//	]);
 
 	// Project configuration.
 	grunt.initConfig({
@@ -83,7 +85,7 @@ module.exports = function (grunt) {
 					allowEmpty: true
 				},
 				files: {
-					src: git_files_list
+					src: [git_files_list, svn_files_list]
 				}
 			}
 		},
@@ -95,6 +97,22 @@ module.exports = function (grunt) {
 					branch: 'master'
 				}
 			}
+		},
+		"file-creator": {
+		    "folder": {
+		    	".gitattributes": function(fs, fd, done) {
+		        	var glob = grunt.file.glob;
+		        	var _ = grunt.util._;
+					fs.writeSync(fd, '# We don\'t want these files in our "<%= pkg.name %>.zip", so tell GitHub to ignore them when the user click on Download ZIP'  + '\n');
+		        	_.each(git_files_list , function(filepattern) {
+		        		glob.sync(filepattern, function(err,files) {
+			            	_.each(files, function(file) {
+			              		fs.writeSync(fd, '/' + file + ' export-ignore'  + '\n');
+			            	});
+		        		});
+		        	});
+		    	}
+		    }
 		},
 		replace: {
 			reamde_md: {
@@ -160,6 +178,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks( 'grunt-svn-export' );
 	grunt.loadNpmTasks( 'grunt-push-svn' );
 	grunt.loadNpmTasks( 'grunt-remove' );
+	grunt.loadNpmTasks( 'grunt-file-creator' );
 
 	grunt.registerTask('syntax', 'default task description', function(){
 	  console.log('Syntax:\n' +
@@ -173,6 +192,8 @@ module.exports = function (grunt) {
 	grunt.registerTask( 'default', ['syntax'] );
 	grunt.registerTask( 'version_number', [ 'replace:reamde_md', 'replace:reamde_txt', 'replace:plugin_php' ] );
 	grunt.registerTask( 'pre_vcs', [ 'version_number'] );
+	grunt.registerTask( 'gitattributes', [ 'file-creator'] );
+
 	grunt.registerTask( 'do_svn', [ 'svn_export', 'copy:svn_assets', 'copy:svn_trunk', 'copy:svn_tag', 'push_svn' ] );
 	grunt.registerTask( 'do_git', [ 'gitcommit', 'gittag', 'gitpush' ] );
 	grunt.registerTask( 'release', [ 'pre_vcs', 'do_svn', 'do_git', 'clean:post_build' ] );
