@@ -1,3 +1,4 @@
+<a href="https://travis-ci.org/soderlind/wp-anchor-header"><img src="https://travis-ci.org/soderlind/wp-anchor-header.svg?branch=master" /></a>
 # WP Anchor Header
 
 Generates anchored headings (H1-H6) like:
@@ -41,6 +42,6 @@ a.anchorlink {
 
 The plugin is inspired by Christian Weiske and his article [Usability: Clickable heading links](http://cweiske.de/tagebuch/html-heading-links.htm).
 
-Latest Stable Release: [0.1.8](https://github.com/soderlind/wp-anchor-header/releases/tag/0.1.8)
+Latest Stable Release: [0.2.0](https://github.com/soderlind/wp-anchor-header/releases/tag/0.2.0)
 
-~Current Version: 0.1.8~
+~Current Version: 0.2.0~

@@ -5,15 +5,15 @@ h3[id]:hover a.anchorlink:before,
 h4[id]:hover a.anchorlink:before,
 h5[id]:hover a.anchorlink:before,
 h6[id]:hover a.anchorlink:before {
-    text-decoration: none;
-    content: "\f103"; /*dashicons-admin-links*/
     color: #888;
+    content: "\f103"; /*dashicons-admin-links*/
     font-size: smaller;
-    vertical-align: initial;
+    text-decoration: none;
+    vertical-align: middle;
 }
 
 a.anchorlink {
-    text-decoration: none;
-    margin-left: 0.5em;
     font-size: smaller;
+    margin-left: 0.5em;
+    text-decoration: none;
 }

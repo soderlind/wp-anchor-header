@@ -1,9 +1,8 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-
-# We don't want these files in our "plugin.zip", so tell GitHub to ignore them when the user click on Download ZIP
-/.gitattributes export-ignore
-/.gitignore     export-ignore
-/README.md      export-ignore
-/package.json   export-ignore
-/Gruntfile.js   export-ignore
+# We don't want these files in our "plugins.zip", so tell GitHub to ignore them when the user click on Download ZIP
+/README.md export-ignore
+/package.json export-ignore
+/Gruntfile.js export-ignore
+/assets export-ignore
+/assets/banner-772x250.jpg export-ignore
+/assets/icon-128x128.jpg export-ignore
+/assets/icon-256x256.jpg export-ignore

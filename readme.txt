@@ -3,8 +3,8 @@ Contributors: PerS
 Donate link: http://soderlind.no/donate/
 Tags: header, link
 Requires at least: 4.0
-Tested up to: 4.3
-Stable tag: 0.1.8
+Tested up to: 4.5
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ The plugin is inspired by Christian Weiske and his article [Usability: Clickable
 
 
 == Changelog ==
+= 0.2.0 =
+* Update plugin for [WordPress Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/).
+* Tested & found compatible with WP 4.5.
 = 0.1.8 =
 * Fixed UTF-8 parsing bug, added `mb_convert_encoding` to loadHTML(): `@$doc->loadHTML( mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8') );`
 * Added singleton

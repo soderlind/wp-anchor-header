@@ -5,6 +5,7 @@
  *        copy:svn_assets task
  *        makepot, creates wp-anchor-header.pot
  */
+
 module.exports = function (grunt) {
 
 	/**
@@ -21,14 +22,12 @@ module.exports = function (grunt) {
 	 * Let's add a couple of more files to GitHub
 	 * @type {Array}
 	 */
-//	git_files_list = svn_files_list.concat([
-	git_files_list = [
+	git_files_list = svn_files_list.concat([
 		'README.md',
 		'package.json',
 		'Gruntfile.js',
 		'assets/**'
-	];
-//	]);
+	]);
 
 	// Project configuration.
 	grunt.initConfig({
@@ -85,7 +84,7 @@ module.exports = function (grunt) {
 					allowEmpty: true
 				},
 				files: {
-					src: [git_files_list, svn_files_list]
+					src: [git_files_list]
 				}
 			}
 		},
@@ -103,8 +102,8 @@ module.exports = function (grunt) {
 		    	".gitattributes": function(fs, fd, done) {
 		        	var glob = grunt.file.glob;
 		        	var _ = grunt.util._;
-					fs.writeSync(fd, '# We don\'t want these files in our "<%= pkg.name %>.zip", so tell GitHub to ignore them when the user click on Download ZIP'  + '\n');
-		        	_.each(git_files_list , function(filepattern) {
+					fs.writeSync(fd, '# We don\'t want these files in our "plugins.zip", so tell GitHub to ignore them when the user click on Download ZIP'  + '\n');
+		        	_.each(git_files_list.diff(svn_files_list) , function(filepattern) {
 		        		glob.sync(filepattern, function(err,files) {
 			            	_.each(files, function(file) {
 			              		fs.writeSync(fd, '/' + file + ' export-ignore'  + '\n');
@@ -195,7 +194,15 @@ module.exports = function (grunt) {
 	grunt.registerTask( 'gitattributes', [ 'file-creator'] );
 
 	grunt.registerTask( 'do_svn', [ 'svn_export', 'copy:svn_assets', 'copy:svn_trunk', 'copy:svn_tag', 'push_svn' ] );
-	grunt.registerTask( 'do_git', [ 'gitcommit', 'gittag', 'gitpush' ] );
+	grunt.registerTask( 'do_git', [ /*'gitattributes',*/ 'gitcommit', 'gittag', 'gitpush' ] );
 	grunt.registerTask( 'release', [ 'pre_vcs', 'do_svn', 'do_git', 'clean:post_build' ] );
 
+};
+
+/**
+ * Helper
+ */
+// from http://stackoverflow.com/a/4026828/1434155
+Array.prototype.diff = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
 };

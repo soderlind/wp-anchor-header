@@ -4,7 +4,7 @@ Plugin Name: WP Anchor Header
 Plugin URI: https://github.com/soderlind/wp-anchor-header
 Description: Generates anchored headings.
 Author: Per Soderlind
-Version: 0.1.8
+Version: 0.2.0
 Author URI: http://soderlind.no
 */
 
@@ -13,7 +13,7 @@ if ( defined( 'ABSPATH' ) ) {
 }
 
 define( 'ANCHORHEADER_URL',   plugin_dir_url( __FILE__ ) );
-define( 'ANCHORHEADER_VERSION', '0.1.8' );
+define( 'ANCHORHEADER_VERSION', '0.2.0' );
 
 
 class Anchor_Header {
@@ -63,21 +63,33 @@ class Anchor_Header {
 		}
 		$anchors = array();
 		$doc = new DOMDocument();
-		@$doc->loadHTML( mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8') );
+		// START LibXML error management.
+		// Modify state
+		$libxml_previous_state = libxml_use_internal_errors( true );
+		$doc->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
+		// handle errors
+		libxml_clear_errors();
+		// restore
+		libxml_use_internal_errors( $libxml_previous_state );
+		// END LibXML error management.
+
 		foreach ( array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ) as $h ) {
 			$headings = $doc->getElementsByTagName( $h );
 			foreach ( $headings as $heading ) {
-				$a = $doc->createElement( "a" );
+				$a = $doc->createElement( 'a' );
 				$newnode = $heading->appendChild( $a );
-				$newnode->setAttribute( "class", "anchorlink dashicons-before" );
+				$newnode->setAttribute( 'class', 'anchorlink dashicons-before' );
+				// @codingStandardsIgnoreStart
+				// $heading->nodeValue is from an external libray. Ignore the standard check sinice it doesn't fit the WordPress-Core standard
 				$slug = $tmpslug = sanitize_title( $heading->nodeValue );
+				// @codingStandardsIgnoreEnd
 				$i = 2;
 				while ( false !== in_array( $slug, $anchors ) ) {
-					$slug = sprintf( "%s-%d", $tmpslug, $i++ );
+					$slug = sprintf( '%s-%d', $tmpslug, $i++ );
 				}
 				$anchors[] = $slug;
-				$heading->setAttribute( "id", $slug );
-				$newnode->setAttribute( "href", '#' . $slug );
+				$heading->setAttribute( 'id', $slug );
+				$newnode->setAttribute( 'href', '#' . $slug );
 			}
 		}
 		return $doc->saveHTML();
