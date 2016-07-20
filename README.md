@@ -42,6 +42,6 @@ a.anchorlink {
 
 The plugin is inspired by Christian Weiske and his article [Usability: Clickable heading links](http://cweiske.de/tagebuch/html-heading-links.htm).
 
-Latest Stable Release: [0.2.0](https://github.com/soderlind/wp-anchor-header/releases/tag/0.2.0)
+Latest Stable Release: [0.2.1](https://github.com/soderlind/wp-anchor-header/releases/tag/0.2.1)
 
-~Current Version: 0.2.0~
+~Current Version: 0.2.1~
