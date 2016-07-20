@@ -58,7 +58,7 @@ class Anchor_Header {
 	 */
 	function the_content( $content ) {
 
-		if ( ! is_singular() ) {
+		if ( ! is_singular() || '' == $content) {
 			return $content;
 		}
 		$anchors = array();
