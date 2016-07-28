@@ -3,8 +3,8 @@ Contributors: PerS
 Donate link: http://soderlind.no/donate/
 Tags: header, link
 Requires at least: 4.0
-Tested up to: 4.5.3
-Stable tag: 0.2.1
+Tested up to: 4.6
+Stable tag: 0.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,8 @@ The plugin is inspired by Christian Weiske and his article [Usability: Clickable
 
 
 == Changelog ==
+= 0.2.2 =
+* Tested & found compatible with WP 4.6.
 = 0.2.1 =
 * Fix: Don't run if `the_content` is empty
 = 0.2.0 =
