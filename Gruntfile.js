@@ -64,7 +64,7 @@ module.exports = function (grunt) {
 				expand: true,
 				src:  svn_files_list,
 				dest: 'build/<%= pkg.name %>/tags/<%= pkg.version %>/'
-			},
+			}
 
 		},
 		gittag: {
@@ -97,22 +97,22 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		"file-creator": {
-		    "folder": {
-		    	".gitattributes": function(fs, fd, done) {
-		        	var glob = grunt.file.glob;
-		        	var _ = grunt.util._;
-					fs.writeSync(fd, '# We don\'t want these files in our "plugins.zip", so tell GitHub to ignore them when the user click on Download ZIP'  + '\n');
-		        	_.each(git_files_list.diff(svn_files_list) , function(filepattern) {
-		        		glob.sync(filepattern, function(err,files) {
-			            	_.each(files, function(file) {
-			              		fs.writeSync(fd, '/' + file + ' export-ignore'  + '\n');
-			            	});
-		        		});
-		        	});
-		    	}
-		    }
-		},
+		// "file-creator": {
+		//     "folder": {
+		//     	".gitattributes": function(fs, fd, done) {
+		//         	var glob = grunt.file.glob;
+		//         	var _ = grunt.util._;
+		// 			fs.writeSync(fd, '# We don\'t want these files in our "plugins.zip", so tell GitHub to ignore them when the user click on Download ZIP' + "\n");
+		//         	_.each(git_files_list.diff(svn_files_list) , function(filepattern) {
+		//         		glob.sync(filepattern, function(err,files) {
+		// 	            	_.each(files, function(file) {
+		// 	              		fs.writeSync(fd, '/' + file + ' export-ignore'  + "\n");
+		// 	            	});
+		//         		});
+		//         	});
+		//     	}
+		//     }
+		// },
 		replace: {
 			reamde_md: {
 				src: [ 'README.md' ],
@@ -163,7 +163,7 @@ module.exports = function (grunt) {
 				dest: 'http://plugins.svn.wordpress.org/<%= pkg.name %>',
 				tmp: 'build/make_svn'
 			}
-		},
+		}
 	});
 
 
@@ -203,6 +203,6 @@ module.exports = function (grunt) {
  * Helper
  */
 // from http://stackoverflow.com/a/4026828/1434155
-Array.prototype.diff = function(a) {
-    return this.filter(function(i) {return a.indexOf(i) < 0;});
-};
+// Array.prototype.diff = function(a) {
+//     return this.filter(function(i) {return a.indexOf(i) < 0;});
+// };
