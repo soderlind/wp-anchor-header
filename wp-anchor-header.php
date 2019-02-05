@@ -67,6 +67,7 @@ class Anchor_Header {
 		// Modify state
 		$libxml_previous_state = libxml_use_internal_errors( true );
 		$doc->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
+		$doc->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
 		// handle errors
 		libxml_clear_errors();
 		// restore
