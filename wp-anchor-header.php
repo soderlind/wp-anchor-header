@@ -66,8 +66,15 @@ class Anchor_Header {
 		// START LibXML error management.
 		// Modify state
 		$libxml_previous_state = libxml_use_internal_errors( true );
-		$doc->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
-		$doc->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+		$html = mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8');
+		@$doc->loadHTML("<div>$html</div>", LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    	$cont = $doc->getElementsByTagName('div')->item(0);
+    	while ($doc->firstChild) {
+    	    $doc->removeChild($doc->firstChild);
+    	}
+    	while ($cont->firstChild) {
+        	$doc->appendChild($cont->firstChild);
+    	}
 		// handle errors
 		libxml_clear_errors();
 		// restore
@@ -93,7 +100,8 @@ class Anchor_Header {
 				$newnode->setAttribute( 'href', '#' . $slug );
 			}
 		}
-		return $doc->saveHTML();
+		$html = $doc->saveHTML();
+		return mb_convert_encoding($html, 'UTF-8', 'HTML-ENTITIES');
 	}
 
 	/**
