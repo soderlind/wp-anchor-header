@@ -1,0 +1,8 @@
+{
+    "name": "soderlind/wp-anchor-header",
+    "description": "WP Anchor Header",
+    "type": "wordpress-plugin",
+    "homepage": "https://github.com/soderlind/wp-anchor-header",
+    "license": "GPL-2.0-or-later",
+    "require": {}
+}
