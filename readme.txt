@@ -3,9 +3,9 @@ Contributors: PerS
 Donate link: http://soderlind.no/donate/
 Tags: header, link
 Requires at least: 6.5
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.2
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,8 +57,11 @@ The plugin is inspired by Christian Weiske and his article [Usability: Clickable
 
 
 == Changelog ==
+= 0.3.1 =
+* Tested up to WordPress 7.1.
+
 = 0.3.0 =
-* Requires WordPress 6.5 or later and tested up to WordPress 7.0.
+* Requires WordPress 6.5 or later and tested up to WordPress 7.1.
 * Refactor heading parsing to avoid deprecated HTML entity conversion and preserve existing heading IDs.
 
 = 0.2.3 =

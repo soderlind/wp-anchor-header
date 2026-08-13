@@ -4,10 +4,10 @@ Plugin Name: WP Anchor Header
 Plugin URI: https://github.com/soderlind/wp-anchor-header
 Description: Generates anchored headings.
 Author: Per Soderlind
-Version: 0.3.0
+Version: 0.3.1
 Author URI: http://soderlind.no
 Requires at least: 6.5
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.2
 */
 
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'ANCHORHEADER_URL', plugin_dir_url( __FILE__ ) );
-define( 'ANCHORHEADER_VERSION', '0.3.0' );
+define( 'ANCHORHEADER_VERSION', '0.3.1' );
 
 
 class Anchor_Header {
